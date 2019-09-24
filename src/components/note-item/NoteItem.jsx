@@ -12,7 +12,7 @@ class NoteItem extends Component{
 
     render(){
         return(
-            <div className='note-item' onClick={() => {this.props.updateData(this.state.index)}}>
+            <div className='note-item' onClick={() => {this.props.updateData({active: this.state.index})}}>
                 <div className='note-item__title'>
                     <h2>{this.props.title}</h2>
                 </div>

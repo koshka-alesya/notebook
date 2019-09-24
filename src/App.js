@@ -3,6 +3,7 @@ import './App.css';
 import Note from './components/node/Note';
 import NoteItem from './components/note-item/NoteItem';
 import Form from './components/form/Form';
+import Search from './components/search/Search';
 
 
 
@@ -18,18 +19,20 @@ class App extends Component {
       this.state = {
         notes:[],
         active:1,
+        search:'',
       };
      
     }
 
   componentDidMount() {
       let notes = localStorage.getItem("notes");
+      this.initialData=JSON.parse(notes);
         if (notes)
-           this.setState({notes: JSON.parse(notes)});
+           this.setState({notes: this.initialData});
     } 
   
   updateData(value) {
-      this.setState({active: value});
+      this.setState(value);
     }
 
   newNote(title, text) { //prepend new object   
@@ -60,9 +63,9 @@ class App extends Component {
                             Click orange round button &#x02197; to add a new note. You can edit or delete notes. 
                             If you delete your browser's temporary files then you will lose your notes. </div>
              
-      let notes = this.state.notes.map((obj, i) =>  
-                  <Note key={i} index={i} title={obj.title} text={obj.text} onUpdate={this.updateNote} onRemove={this.removeNote} />
-      );      
+     // let notes = this.state.notes.map((obj, i) =>  
+      //            <Note key={i} index={i} title={obj.title} text={obj.text} onUpdate={this.updateNote} onRemove={this.removeNote} />
+     // );      
       let list=this.state.notes.map((obj, i) =>  
       <NoteItem key={i} index={i} title={obj.title} text={obj.text} updateData={this.updateData}/>    
       );
@@ -91,10 +94,10 @@ class App extends Component {
                  </div>
                  
                  <Form onSend={this.newNote}/>
+
+                 <Search search={this.state.search} notes={this.initialData} updateData={this.updateData}/>
            
-                 <div className="container-fluid">  
-                     {this.state.notes.length > 0 ? notes : instruction }         
-                 </div> 
+                 
 
                  <div className='note-list'>
                   {list}
