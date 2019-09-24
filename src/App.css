@@ -1,3 +1,6 @@
+@import './components/note-item/note-item.css';
+
+
 .App {
   text-align: center;
 }
