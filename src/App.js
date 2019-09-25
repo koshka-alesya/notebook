@@ -4,6 +4,7 @@ import Note from './components/node/Note';
 import NoteItem from './components/note-item/NoteItem';
 import Form from './components/form/Form';
 import Search from './components/search/Search';
+import BtnAdd from './components/button-add/BtnAdd';
 
 
 
@@ -18,8 +19,14 @@ class App extends Component {
       
       this.state = {
         notes:[],
-        active:1,
+        active:0,
         search:'',
+        icons:{
+        delete:require('./styles/icons/delete.svg'),
+        save: require('./styles/icons/save.svg'),
+        edit: require('./styles/icons/edit.svg'),
+      }
+    
       };
      
     }
@@ -35,9 +42,10 @@ class App extends Component {
       this.setState(value);
     }
 
-  newNote(title, text) { //prepend new object   
+  newNote(title, text) { 
       let notes = [{title: title, text: text}].concat(this.state.notes);   
       this.saveNote(notes);
+      this.setState({active: 0});
     } 
     
   saveNote(notes) {
@@ -76,33 +84,38 @@ class App extends Component {
       for (var i=0; i<this.state.notes.length;i++){ //кирпич
 
         if (i===this.state.active)
-           note = <Note key={i} index={i} title={this.state.notes[i].title} text={this.state.notes[i].text } onUpdate={this.updateNote} onRemove={this.removeNote}/>
+           note = <Note key={i} index={i} active={this.state.active} notes={this.state.notes} title={this.state.notes[i].title} text={this.state.notes[i].text } onUpdate={this.updateNote} onRemove={this.removeNote} icons={this.state.icons}/>
       }
 
       
     
       
-      //конец кирпича
-       
-       return ( <div className="container-fluid">
-           
-                 <div className="row header">
-                   <h1 className="col-2">Notepad</h1>
-                   <div className="col-1 offset-7 offset-md-9">
+      /*конец кирпича <div className="col-1 offset-7 offset-md-9">
                      <button  type="button" className="btn btn-warning" data-toggle="collapse" data-target="#form">+</button>
-                   </div>
-                 </div>
-                 
-                 <Form onSend={this.newNote}/>
-
-                 <Search search={this.state.search} notes={this.initialData} updateData={this.updateData}/>
+                     </div>*/
+       
+       return ( <div className="App">
            
-                 
+                 <header className="header">
+                   <h1 className="header__titl">Notepad</h1>
+                 </header>
 
-                 <div className='note-list'>
-                  {list}
+                 <BtnAdd newNote={this.newNote} updateData={this.updateData} />
                  
-                  {note}
+                 <div className="container">
+                  <div className="container__left">
+                    <Form onSend={this.newNote}/>
+
+                    <Search search={this.state.search} notes={this.initialData} updateData={this.updateData}/>
+                    {list}
+                  </div>
+                    
+                  <div className="container__right">
+                    
+                      {note}
+                    
+                  </div>
+
                  </div>
 
                  </div>     

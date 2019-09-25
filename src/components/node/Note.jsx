@@ -1,5 +1,8 @@
 import React, {Component} from 'react';
 
+
+import IconBtn from '../icon-btn/IconBtn';
+
 class Note extends Component{
     constructor(props){
         super(props);
@@ -16,9 +19,16 @@ class Note extends Component{
     }
 
     edit() { //lift state up to the parent 
+        this.setState({title: '', text: ''});
+        this.setState({title: this.props.title, text: this.props.text});
+
+
+        console.log(this.props.notes, this.props.active)
         this.props.onUpdate(this.props.index, this.state.title, this.state.text);
         this.setState({editing: !this.state.editing});
       }
+    
+    
 
     delete() { //lift state up to the parent    
         this.props.onRemove(this.props.index);
@@ -34,37 +44,51 @@ class Note extends Component{
 
       renderNoteOrEdit() { //when clicks edit button pencil-icon toggle between input and div
         if(this.state.editing) {
-          return (<div className="inner">   
-                    <div className="title">
-                         <button type="button" className="btn del" onClick={this.delete}>Удалить</button>  
-                         <button type="button" className="btn save" onClick={this.edit}>Сохранить</button>
+          return (
+                <form>
+                <div className="note">   
+                    <div className="note__top">
+                        
+                        <input  type="text" className="note__input" value={this.state.title} onChange={this.changeTitle} />  
+                        
+                        <div className = "note__top__btn">
+                            <button type="button" className="note__btn" onClick={this.delete}><img className="note__btn__icon" src= {this.props.icons.delete} alt=''/></button>  
+                            <button type="button" className="note__btn" onClick={this.edit}><img className="note__btn__icon" src= {this.props.icons.save} alt=''/></button>
+                        </div>  
+                        
+                         
                     </div>
                               
-                    <div className="form-group">
-                        <input type="text" value={this.state.title} onChange={this.changeTitle} className="form-control" />  
-                    </div>                    
-                    <div className="form-group">
+                                        
+                    <div className="note__textarea">
                         <textarea  name="text" value={this.state.text} onChange={this.changeText} className="form-control" rows="4"/>
                     </div>
               
-                 </div>)
+                 </div>
+                 </form>)
         } else {
-           return (<div className="inner">
-                    <button type="button" className="btn del" onClick={this.delete}>Удалить</button>
-                    <button type="button" className="btn" onClick={this.edit}>Редактировать</button>
-                    <div className="title">
-                         <h2>{this.props.title}</h2>
-                    </div>
-                    <div className="text"> 
-                       <p>{this.props.text}</p>
-                    </div>
+           return (<div className="note">
+                        <div className="note__top">
+                            <div className="note__title">
+                                    <h2>{this.props.title}</h2>
+                            </div>
+                            <div className = "note__top__btn">
+                                <button type="button" className="note__btn" onClick={this.delete}><img className="note__btn__icon" src= {this.props.icons.delete} alt=''/></button>
+                                <button type="button" className="note__btn" onClick={this.edit}><img className="note__btn__icon" src= {this.props.icons.edit} alt=''/></button>
+                            </div>
+                            
+                        </div>
+                        <div className="note__text"> 
+                            <span>{this.props.text}</span>
+                        </div>
                    </div>)
         }
       }
-      render() { //render function based on value {this.state.editing}
-        return ( <div className="note col-sx-10 col-sm-6 col-md-4">
+      render() { 
+        return ( <div>
                     {this.renderNoteOrEdit()}
-                 </div>
+                </div>
+                 
         )
       }
     

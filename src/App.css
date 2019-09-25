@@ -1,4 +1,36 @@
 @import './components/note-item/note-item.css';
+@import './components/search/search.css';
+@import './components/node/note.css';
+
+
+@font-face{
+  font-family:"Mon";
+  src: url(./styles/fonts/Montserrat-Light.ttf)
+}
+body{
+  font-family: "Mon";
+  background-color: #f4f8f9;
+  color:#767676;
+}
+
+button{
+  background: transparent;
+  border:none;
+  margin:0;
+  padding:0;
+}
+
+h1,h2,h3,h4,h5{
+  margin:0;
+  color:black;
+}
+
+textarea,unput{
+  font-family: "Mon";
+  font-size:16px;
+  color: #767676;
+
+}
 
 
 .App {
@@ -22,4 +54,36 @@
 
 .App-link {
   color: #09d3ac;
+}
+
+.header{
+  padding:15px 0;
+  background-color: white;
+  margin-bottom: 20px;
+  text-align:left;
+  padding-left:70px;
+
+}
+
+.container{
+  display:flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: nowrap;
+  margin: 0px 70px;
+
+}
+
+.container__left{
+  width:25%;
+ 
+  flex-grow:1;
+  background-color: white;
+}
+.container__right{
+  flex-grow: 3;
+  width: 75%;
+  padding:0;
+  margin:0;
 }

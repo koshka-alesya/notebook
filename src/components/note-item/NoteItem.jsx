@@ -14,11 +14,11 @@ class NoteItem extends Component{
         return(
             <div className='note-item' onClick={() => {this.props.updateData({active: this.state.index})}}>
                 <div className='note-item__title'>
-                    <h2>{this.props.title}</h2>
+                    <h4>{this.props.title}</h4>
                 </div>
 
                 <div className='note-item__text'>
-                    <p>{this.props.text}</p>
+                    <span>{this.props.text}</span>
                 </div>
             </div>
         )

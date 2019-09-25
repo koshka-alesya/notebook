@@ -1,0 +1,23 @@
+.search{
+padding: 20px;
+padding-right: 35px;
+border-top: 3px solid #f4f8f9;
+}
+
+.search__input{
+    
+    text-decoration: none;
+    outline:none;
+    width:100%;
+    height:40px;
+    border-radius: 45px;
+    border: 1px solid #b7b9b7;
+    font-family: "Mon";
+    
+    padding-left:15px;
+    font-size:14px;
+    background-image: url(../../styles/icons/search.svg);
+    background-repeat: no-repeat;
+    background-position: 95% 50%;
+
+}

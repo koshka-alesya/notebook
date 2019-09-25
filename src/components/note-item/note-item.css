@@ -1,3 +1,25 @@
 .note-item{
     cursor: pointer;
+    background-color: white;
+    padding:0 20px;
+    padding-bottom: 15px;
+    border-top: 3px solid #f4f8f9;
+    text-align: left;
+    max-height: 70px;
+    
+
+}
+
+.note-item__title{
+    padding:15px 0;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.note-item__text{
+    font-size:12px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
