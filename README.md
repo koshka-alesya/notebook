@@ -3,7 +3,6 @@
 Инструкция по запуску:
 ### `npm run build`
 
-(Если потребуется):
 ### `npm install -g serve`
 
 ### `serve -s build`
