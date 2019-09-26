@@ -60,6 +60,7 @@ class App extends Component {
     }
     
   updateNote(index, title, text) {
+
       let notes = this.state.notes;
       notes[index].title = title;
       notes[index].text = text;
@@ -67,13 +68,7 @@ class App extends Component {
     }
 
     render() { //Conditional rendering: Ternary operator shows saved notes from local storage. Or plain text
-      const instruction = <div className="col-xs-12 col-sm-6 offset-sm-3">The app uses local storage to keep changes in the client's cache.
-                            Click orange round button &#x02197; to add a new note. You can edit or delete notes. 
-                            If you delete your browser's temporary files then you will lose your notes. </div>
-             
-     // let notes = this.state.notes.map((obj, i) =>  
-      //            <Note key={i} index={i} title={obj.title} text={obj.text} onUpdate={this.updateNote} onRemove={this.removeNote} />
-     // );      
+       
       let list=this.state.notes.map((obj, i) =>  
       <NoteItem key={i} index={i} title={obj.title} text={obj.text} updateData={this.updateData}/>    
       );

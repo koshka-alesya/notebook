@@ -18,9 +18,8 @@ class Note extends Component{
             editing: false}; //by default render as text
     }
 
-    edit() { //lift state up to the parent 
-        this.setState({title: '', text: ''});
-        this.setState({title: this.props.title, text: this.props.text});
+    edit() { //lift state up to the parent
+       // this.setState({title: this.props.title, text: this.props.text});
 
 
         console.log(this.props.notes, this.props.active)
