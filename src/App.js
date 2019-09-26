@@ -99,7 +99,6 @@ class App extends Component {
                  
                  <div className="container">
                   <div className="container__left">
-                    <Form onSend={this.newNote}/>
 
                     <Search search={this.state.search} notes={this.initialData} updateData={this.updateData}/>
                     {list}

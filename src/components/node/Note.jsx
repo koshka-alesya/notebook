@@ -11,6 +11,7 @@ class Note extends Component{
         
         this.edit = this.edit.bind(this); //to the parent
         this.delete = this.delete.bind(this); //to the parent
+        this.modedit=this.modedit.bind(this);
         
         this.state = {
             title: this.props.title,
@@ -19,13 +20,15 @@ class Note extends Component{
     }
 
     edit() { //lift state up to the parent
-       // this.setState({title: this.props.title, text: this.props.text});
-
-
-        console.log(this.props.notes, this.props.active)
+        this.setState({title: this.props.title, text: this.props.text});
         this.props.onUpdate(this.props.index, this.state.title, this.state.text);
-        this.setState({editing: !this.state.editing});
+        this.setState({editing: false});
       }
+
+    modedit(){
+        this.setState({title: this.props.title, text: this.props.text});
+        this.setState({editing: true});
+    }
     
     
 
@@ -41,7 +44,7 @@ class Note extends Component{
         this.setState({text: e.target.value});
       }
 
-      renderNoteOrEdit() { //when clicks edit button pencil-icon toggle between input and div
+    renderNoteOrEdit() { //when clicks edit button pencil-icon toggle between input and div
         if(this.state.editing) {
           return (
                 <form>
@@ -73,7 +76,7 @@ class Note extends Component{
                             </div>
                             <div className = "note__top__btn">
                                 <button type="button" className="note__btn" onClick={this.delete}><img className="note__btn__icon" src= {this.props.icons.delete} alt=''/></button>
-                                <button type="button" className="note__btn" onClick={this.edit}><img className="note__btn__icon" src= {this.props.icons.edit} alt=''/></button>
+                                <button type="button" className="note__btn" onClick={this.modedit}><img className="note__btn__icon" src= {this.props.icons.edit} alt=''/></button>
                             </div>
                             
                         </div>
