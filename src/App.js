@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import './App.css';
-import Note from './components/node/Note';
+import Note from './components/note/Note';
 import NoteItem from './components/note-item/NoteItem';
-import Form from './components/form/Form';
 import Search from './components/search/Search';
 import BtnAdd from './components/button-add/BtnAdd';
 
@@ -11,10 +10,10 @@ import BtnAdd from './components/button-add/BtnAdd';
 class App extends Component {
   constructor(props) {
       super(props);
-      this.newNote = this.newNote.bind(this); //when save form 
-      this.saveNote = this.saveNote.bind(this); //localStorage & this.state
+      this.newNote = this.newNote.bind(this); 
+      this.saveNote = this.saveNote.bind(this); 
       this.removeNote = this.removeNote.bind(this); 
-      this.updateNote = this.updateNote.bind(this); //whan clicked save-icon in a note
+      this.updateNote = this.updateNote.bind(this); 
       this.updateData=this.updateData.bind(this);
       
       this.state = {
@@ -67,10 +66,13 @@ class App extends Component {
       this.saveNote(notes);
     }
 
-    render() { //Conditional rendering: Ternary operator shows saved notes from local storage. Or plain text
+    render() { 
        
       let list=this.state.notes.map((obj, i) =>  
-      <NoteItem key={i} index={i} title={obj.title} text={obj.text} updateData={this.updateData}/>    
+        { if (i===this.state.active)
+          return <NoteItem  class="active" key={i} index={i} title={obj.title} text={obj.text} updateData={this.updateData}/>
+        else 
+          return <NoteItem class="" key={i} index={i} title={obj.title} text={obj.text} updateData={this.updateData}/>  }  
       );
       
       
@@ -85,20 +87,19 @@ class App extends Component {
       
     
       
-      /*конец кирпича <div className="col-1 offset-7 offset-md-9">
-                     <button  type="button" className="btn btn-warning" data-toggle="collapse" data-target="#form">+</button>
-                     </div>*/
+      //конец кирпича
        
        return ( <div className="App">
            
                  <header className="header">
-                   <h1 className="header__titl">Notepad</h1>
+                   <h1 className="header__titl">Заметки</h1>
                  </header>
 
-                 <BtnAdd newNote={this.newNote} updateData={this.updateData} />
+                 
                  
                  <div className="container">
                   <div className="container__left">
+                    <BtnAdd newNote={this.newNote} updateData={this.updateData} />
 
                     <Search search={this.state.search} notes={this.initialData} updateData={this.updateData}/>
                     {list}

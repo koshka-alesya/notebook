@@ -1,6 +1,4 @@
 import React, {Component} from 'react';
-
-
 import IconBtn from '../icon-btn/IconBtn';
 
 class Note extends Component{
@@ -9,17 +7,17 @@ class Note extends Component{
         this.changeTitle = this.changeTitle.bind(this);
         this.changeText = this.changeText.bind(this);
         
-        this.edit = this.edit.bind(this); //to the parent
-        this.delete = this.delete.bind(this); //to the parent
+        this.edit = this.edit.bind(this);
+        this.delete = this.delete.bind(this); 
         this.modedit=this.modedit.bind(this);
         
         this.state = {
             title: this.props.title,
             text: this.props.text,
-            editing: false}; //by default render as text
+            editing: false}; 
     }
 
-    edit() { //lift state up to the parent
+    edit() { 
         this.setState({title: this.props.title, text: this.props.text});
         this.props.onUpdate(this.props.index, this.state.title, this.state.text);
         this.setState({editing: false});
@@ -32,7 +30,7 @@ class Note extends Component{
     
     
 
-    delete() { //lift state up to the parent    
+    delete() {
         this.props.onRemove(this.props.index);
     }
 
@@ -44,7 +42,7 @@ class Note extends Component{
         this.setState({text: e.target.value});
       }
 
-    renderNoteOrEdit() { //when clicks edit button pencil-icon toggle between input and div
+    renderNoteOrEdit() { 
         if(this.state.editing) {
           return (
                 <form>

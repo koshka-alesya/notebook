@@ -10,11 +10,20 @@
 
 }
 
+.active > .note-item{
+    border: 2px solid #38b7ea;
+    border-radius: 5px;
+    background-color:#38b7ea;
+    color:white;
+}
+
 .note-item__title{
     padding:15px 0;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
+    font-size:18px;
+    
 }
 
 .note-item__text{
